@@ -1,3 +1,8 @@
 {
-  "default": {}
+  "default": {
+    "arduinojson": {
+      "baseline": "6.19.3",
+      "port-version": 0
+    }
+  }
 }
