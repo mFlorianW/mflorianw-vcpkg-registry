@@ -6,7 +6,10 @@ vcpkg_from_github(
     HEAD_REF 6.x
 )
 
-vcpkg_cmake_configure(SOURCE_PATH ${SOURCE_PATH})
+vcpkg_cmake_configure(
+    SOURCE_PATH ${SOURCE_PATH}
+    -DBUILD_TESTING=OFF
+)
 vcpkg_cmake_install()
 file(INSTALL "${SOURCE_PATH}/README.md" DESTINATION "${CURRENT_PACKAGES_DIR}/share/ArduinoJson" RENAME copyright)
 
