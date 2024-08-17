@@ -12,5 +12,5 @@ vcpkg_cmake_configure(
         -DBUILD_TESTING=OFF
 )
 vcpkg_cmake_install()
-file(INSTALL "${SOURCE_PATH}/README.md" DESTINATION "${CURRENT_PACKAGES_DIR}/share/ArduinoJson" RENAME copyright)
-
+file(INSTALL "${SOURCE_PATH}/LICENSE.md" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
