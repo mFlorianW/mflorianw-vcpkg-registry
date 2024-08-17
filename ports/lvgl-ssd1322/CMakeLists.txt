@@ -1,19 +1,19 @@
+################################################################################
+# Project
+################################################################################
 cmake_minimum_required (VERSION 3.9)
-project (lvgl-ssd1322)
-
-include_directories(SYSTEM
-    "${CMAKE_CURRENT_SOURCE_DIR}"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_core/"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_draw"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_font"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_gpu"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_hal"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_misc"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_themes"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_widgets"
+project(lvgl-ssd1322
+    VERSION 7.5.0
 )
+################################################################################
+# Modules
+################################################################################
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
 
+################################################################################
+# Source
+################################################################################
 file(GLOB LVGL_SOURCES_HEADER
     "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
 )
@@ -65,21 +65,68 @@ file(GLOB LVGL_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_widgets/*.c"
 )
 
-add_library(lvgl-ssd1322 ${LVGL_SOURCES})
-
-install(
-  TARGETS lvgl-ssd1322
-  RUNTIME DESTINATION bin
-  LIBRARY DESTINATION lib
-  ARCHIVE DESTINATION lib
+################################################################################
+# Build
+################################################################################
+add_library(${PROJECT_NAME} ${LVGL_SOURCES})
+target_include_directories(lvgl-ssd1322
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_core/"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_draw"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_font"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_gpu"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_hal"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_misc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_themes"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_widgets"
+    PUBLIC
+        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>/lvgl"
 )
 
-INSTALL(FILES ${LVGL_SOURCES_HEADER} DESTINATION include/)
-INSTALL(FILES ${LVGL_SOURCES_HEADER_CORE} DESTINATION include/lv_core)
-INSTALL(FILES ${LVGL_SOURCES_HEADER_DRAW} DESTINATION include/lv_draw)
-INSTALL(FILES ${LVGL_SOURCES_HEADER_FONT} DESTINATION include/lv_font)
-INSTALL(FILES ${LVGL_SOURCES_HEADER_GPU} DESTINATION include/lv_gpu)
-INSTALL(FILES ${LVGL_SOURCES_HEADER_HAL} DESTINATION include/lv_hal)
-INSTALL(FILES ${LVGL_SOURCES_HEADER_MISC} DESTINATION include/lv_misc)
-INSTALL(FILES ${LVGL_SOURCES_HEADER_THEMES} DESTINATION include/lv_themes)
-INSTALL(FILES ${LVGL_SOURCES_HEADER_WIDGETS} DESTINATION include/lv_widgets)
+################################################################################
+# CMakePackageConfig
+################################################################################
+set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_INCLUDEDIR}/lvgl CACHE PATH "Location of header lvgl-ssd1322 files" )
+configure_package_config_file(
+    ${PROJECT_NAME}Config.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    INSTALL_DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}
+    PATH_VARS INCLUDE_INSTALL_DIR
+)
+
+write_basic_package_version_file(
+    ${PROJECT_NAME}Version.cmake
+    VERSION "${PROJECT_VERSION}"
+    COMPATIBILITY SameMinorVersion
+)
+
+################################################################################
+# Install
+################################################################################
+install(
+    TARGETS ${PROJECT_NAME}
+    EXPORT ${PROJECT_NAME}Targets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(EXPORT lvgl-ssd1322Targets NAMESPACE lvgl-ssd1322:: DESTINATION share/${PROJECT_NAME})
+# install(EXPORT lvgl-ssd1322Targets FILE lvgl-ssd1322-targets.cmake DESTINATION share/${PROJECT_NAME})
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Version.cmake"
+    DESTINATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}"
+)
+
+INSTALL(FILES ${LVGL_SOURCES_HEADER} DESTINATION "${INCLUDE_INSTALL_DIR}/")
+INSTALL(FILES ${LVGL_SOURCES_HEADER_SRC} DESTINATION "${INCLUDE_INSTALL_DIR}/src/")
+INSTALL(FILES ${LVGL_SOURCES_HEADER_CORE} DESTINATION "${INCLUDE_INSTALL_DIR}/src/lv_core")
+INSTALL(FILES ${LVGL_SOURCES_HEADER_DRAW} DESTINATION "${INCLUDE_INSTALL_DIR}/src/lv_draw")
+INSTALL(FILES ${LVGL_SOURCES_HEADER_FONT} DESTINATION "${INCLUDE_INSTALL_DIR}/src/lv_font")
+INSTALL(FILES ${LVGL_SOURCES_HEADER_GPU} DESTINATION "${INCLUDE_INSTALL_DIR}/src/lv_gpu")
+INSTALL(FILES ${LVGL_SOURCES_HEADER_HAL} DESTINATION "${INCLUDE_INSTALL_DIR}/src/lv_hal")
+INSTALL(FILES ${LVGL_SOURCES_HEADER_MISC} DESTINATION "${INCLUDE_INSTALL_DIR}/src/lv_misc")
+INSTALL(FILES ${LVGL_SOURCES_HEADER_THEMES} DESTINATION "${INCLUDE_INSTALL_DIR}/src/lv_themes")
+INSTALL(FILES ${LVGL_SOURCES_HEADER_WIDGETS} DESTINATION "${INCLUDE_INSTALL_DIR}/src/lv_widgets")
