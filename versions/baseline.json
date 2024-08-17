@@ -3,6 +3,10 @@
     "arduinojson": {
       "baseline": "6.19.3",
       "port-version": 0
+    },
+    "lvgl-ssd1322": {
+      "baseline": "7.5.0",
+      "port-version": 0
     }
   }
 }
