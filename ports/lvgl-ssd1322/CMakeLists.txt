@@ -1,0 +1,85 @@
+cmake_minimum_required (VERSION 3.9)
+project (lvgl-ssd1322)
+
+include_directories(SYSTEM
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_core/"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_draw"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_font"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_gpu"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_hal"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_misc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_themes"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_widgets"
+)
+
+file(GLOB LVGL_SOURCES_HEADER
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+)
+
+file(GLOB LVGL_SOURCES_HEADER_SRC
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h"
+)
+
+file(GLOB LVGL_SOURCES_HEADER_CORE
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_core/*.h"
+)
+
+file(GLOB LVGL_SOURCES_HEADER_DRAW
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_draw/*.h"
+)
+
+file(GLOB LVGL_SOURCES_HEADER_FONT
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_font/*.h"
+)
+
+file(GLOB LVGL_SOURCES_HEADER_GPU
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_gpu/*.h"
+)
+
+file(GLOB LVGL_SOURCES_HEADER_HAL
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_hal/*.h"
+)
+
+file(GLOB LVGL_SOURCES_HEADER_MISC
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_misc/*.h"
+)
+
+file(GLOB LVGL_SOURCES_HEADER_THEMES
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_themes/*.h"
+)
+
+file(GLOB LVGL_SOURCES_HEADER_WIDGETS
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_widgets/*.h"
+)
+
+file(GLOB LVGL_SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_core/*.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_draw/*.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_font/*.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_gpu/*.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_hal/*.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_misc/*.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_themes/*.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_widgets/*.c"
+)
+
+add_library(lvgl-ssd1322 ${LVGL_SOURCES})
+
+install(
+  TARGETS lvgl-ssd1322
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)
+
+INSTALL(FILES ${LVGL_SOURCES_HEADER} DESTINATION include/)
+INSTALL(FILES ${LVGL_SOURCES_HEADER_CORE} DESTINATION include/lv_core)
+INSTALL(FILES ${LVGL_SOURCES_HEADER_DRAW} DESTINATION include/lv_draw)
+INSTALL(FILES ${LVGL_SOURCES_HEADER_FONT} DESTINATION include/lv_font)
+INSTALL(FILES ${LVGL_SOURCES_HEADER_GPU} DESTINATION include/lv_gpu)
+INSTALL(FILES ${LVGL_SOURCES_HEADER_HAL} DESTINATION include/lv_hal)
+INSTALL(FILES ${LVGL_SOURCES_HEADER_MISC} DESTINATION include/lv_misc)
+INSTALL(FILES ${LVGL_SOURCES_HEADER_THEMES} DESTINATION include/lv_themes)
+INSTALL(FILES ${LVGL_SOURCES_HEADER_WIDGETS} DESTINATION include/lv_widgets)
