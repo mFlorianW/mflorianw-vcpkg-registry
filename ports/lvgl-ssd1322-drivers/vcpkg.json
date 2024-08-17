@@ -1,0 +1,17 @@
+{
+  "name": "lvgl-ssd1322-drivers",
+  "version": "7.5.0",
+  "description": "Light and Versatile Graphics Library drivers, configured to use with a SSD1322 display.",
+  "license": "MIT",
+  "dependencies": [
+    "lvgl-ssd1322",
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}

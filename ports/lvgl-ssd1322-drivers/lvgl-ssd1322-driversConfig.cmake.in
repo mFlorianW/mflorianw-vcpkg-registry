@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: 2024 Florian Weßel <florianwessel@gmx.net>
+#
+# SPDX-License-Identifier: GPL-2.0-or-later
+
+set(LVGL-SSD1322-DRIVERS_VERSION x.y.z)
+
+@PACKAGE_INIT@
+
+set_and_check(LVGL-SSD1322-DRIVERS_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+
+check_required_components(lvgl-ssd1322-drivers)
+
+include(${CMAKE_CURRENT_LIST_DIR}/lvgl-ssd1322-driversTargets.cmake)
