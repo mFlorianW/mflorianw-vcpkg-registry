@@ -7,6 +7,10 @@
     "lvgl-ssd1322": {
       "baseline": "7.5.0",
       "port-version": 0
+    },
+    "lvgl-ssd1322-drivers": {
+      "baseline": "7.5.0",
+      "port-version": 0
     }
   }
 }
