@@ -12,6 +12,11 @@ include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
 ################################################################################
+# Variables
+################################################################################
+set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_INCLUDEDIR}/lvgl-ssd1322 CACHE PATH "Location of header lvgl-ssd1322 files")
+
+################################################################################
 # Source
 ################################################################################
 file(GLOB LVGL_SOURCES_HEADER
@@ -82,13 +87,12 @@ target_include_directories(lvgl-ssd1322
         "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_themes"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_widgets"
     PUBLIC
-        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>/lvgl"
+        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>/lvgl-ssd1322"
 )
 
 ################################################################################
 # CMakePackageConfig
 ################################################################################
-set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_INCLUDEDIR}/lvgl CACHE PATH "Location of header lvgl-ssd1322 files" )
 configure_package_config_file(
     ${PROJECT_NAME}Config.cmake.in
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
@@ -113,7 +117,6 @@ install(
 )
 
 install(EXPORT lvgl-ssd1322Targets NAMESPACE lvgl-ssd1322:: DESTINATION share/${PROJECT_NAME})
-# install(EXPORT lvgl-ssd1322Targets FILE lvgl-ssd1322-targets.cmake DESTINATION share/${PROJECT_NAME})
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Version.cmake"
