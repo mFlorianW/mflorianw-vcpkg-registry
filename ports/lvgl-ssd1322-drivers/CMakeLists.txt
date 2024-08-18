@@ -60,6 +60,8 @@ target_include_directories(lvgl-ssd1322-drivers
         "${CMAKE_CURRENT_SOURCE_DIR}/indev"
     PUBLIC
         "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/display"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/indev"
 )
 
 ################################################################################
