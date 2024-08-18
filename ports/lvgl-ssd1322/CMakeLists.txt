@@ -87,9 +87,17 @@ target_include_directories(lvgl-ssd1322
         "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_themes"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/lv_widgets"
     PUBLIC
-        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>/lvgl-ssd1322"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/src"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/src/lv_core/"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/src/lv_draw"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/src/lv_font"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/src/lv_gpu"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/src/lv_hal"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/src/lv_misc"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/src/lv_themes"
+        "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/src/lv_widgets"
 )
-
 ################################################################################
 # CMakePackageConfig
 ################################################################################
