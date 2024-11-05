@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": [
     "lvgl-ssd1322",
+    "sdl2",
     {
       "name": "vcpkg-cmake",
       "host": true
