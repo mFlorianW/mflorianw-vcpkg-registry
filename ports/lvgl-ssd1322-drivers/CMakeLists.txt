@@ -16,6 +16,7 @@ include(CMakePackageConfigHelpers)
 # Dependencies
 ################################################################################
 find_package(lvgl-ssd1322 REQUIRED)
+find_package(SDL2 REQUIRED)
 
 ################################################################################
 # Variables
@@ -51,6 +52,7 @@ add_library(lvgl-ssd1322-drivers ${LVGL_SOURCES})
 target_link_libraries(${PROJECT_NAME} 
     PRIVATE 
         lvgl-ssd1322::lvgl-ssd1322
+        ${SDL2_LIBRARIES}
 )
 
 target_include_directories(lvgl-ssd1322-drivers
