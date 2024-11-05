@@ -4,6 +4,7 @@
   "description": "Light and Versatile Graphics Library, configured to use with a SSD1322 display.",
   "license": "MIT",
   "dependencies": [
+    "sdl2",
     {
       "name": "vcpkg-cmake",
       "host": true
