@@ -2,8 +2,8 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO bblanchon/ArduinoJson
     REF v${VERSION}
-    SHA512 df2a89c8f9a03ebb6c2ebd014092e6802826e271a06a76d267ad21cd062f6f60adb058f47f352a6155c3f5407be609815cbcda29cb98f18cfb5283cf6563cbbd
-    HEAD_REF 6.x
+    SHA512 90c2b22dc4179181a0c3b47cd91ca1837f13425c5787e4532772949378e29f33603cb544f9b7921831d99d93d1da43d833c887eb1fad8de266b0efc4863a62b7
+    HEAD_REF 7.x
 )
 
 vcpkg_cmake_configure(
@@ -12,5 +12,5 @@ vcpkg_cmake_configure(
         -DBUILD_TESTING=OFF
 )
 vcpkg_cmake_install()
-file(INSTALL "${SOURCE_PATH}/LICENSE.md" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+file(INSTALL "${SOURCE_PATH}/LICENSE.txt" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug")

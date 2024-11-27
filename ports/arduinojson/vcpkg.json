@@ -1,6 +1,6 @@
 {
   "name": "arduinojson",
-  "version": "6.19.3",
+  "version": "7.2.1",
   "description": "ArduinoJson is a C++ JSON library for Arduino and IoT (Internet Of Things).",
   "license": "MIT",
   "dependencies": [
